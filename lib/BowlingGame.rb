@@ -7,6 +7,7 @@ class BowlingGame
     @score += pins
   end
 
+
   def score
     @score
   end
