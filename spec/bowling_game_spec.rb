@@ -38,7 +38,6 @@ describe BowlingGame do
   end
 
   it "should properly score a first frame strike" do
-    pending "Doesn't work yet"
     g = BowlingGame.new
     g.roll(10)
     (2..10).each do
@@ -48,7 +47,6 @@ describe BowlingGame do
   end
 
   it "should properly score two strikes in a row" do
-    pending "Doesn't work yet"
     g = BowlingGame.new
     g.roll(10)
     g.roll(10)
@@ -59,7 +57,6 @@ describe BowlingGame do
   end
 
   it "should properly score three strikes in a row" do
-    pending "Doesn't work yet"
     g = BowlingGame.new
     g.roll(10)
     g.roll(10)
@@ -71,7 +68,7 @@ describe BowlingGame do
   end
 
   it "should properly score a perfect game" do
-    pending "Doesn't work yet"
+    pending "No logic for extra rolls"
     g = BowlingGame.new
     (1..10).each do
       g.roll(10) 

@@ -6,7 +6,7 @@ class BowlingGame
   end
 
   def score
-    @frames.each { |f| puts "#{f.score}" }
+    # @frames.each { |f| puts "#{f.score}" }
     @frames.inject(0) { |result, elem| result + elem.score }
   end
 
@@ -18,7 +18,7 @@ class BowlingGame
     if previous_frame.strike?
       previous_frame.add_to_bonus_score(pins)
     end
-    if two_frames_ago.strike?
+    if previous_frame.strike? && two_frames_ago.strike? && first_roll
       two_frames_ago.add_to_bonus_score(pins)
     end
     check_for_end_of_frame
