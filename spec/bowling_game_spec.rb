@@ -68,11 +68,12 @@ describe BowlingGame do
   end
 
   it "should properly score a perfect game" do
-    pending "No logic for extra rolls"
     g = BowlingGame.new
     (1..10).each do
       g.roll(10) 
     end
+    g.roll(10)
+    g.roll(10)
     g.score.should == 10 * 30 
   end
 end

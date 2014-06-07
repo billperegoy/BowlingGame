@@ -20,7 +20,7 @@ class Frame
   end
 
   def no_mark?
-    @roll == 2
+    (@roll == 2) && (@score < 10)
   end
 
   def complete?
