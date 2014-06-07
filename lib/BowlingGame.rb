@@ -1,54 +1,52 @@
 class BowlingGame
 
   def initialize
-    @frames = (1..10).map { |f|  Frame.new }
-    @frame_number = 0
-    @strike_add = 0
-    @spare_add = false
+    @frames = (0..10).map { |f|  Frame.new }
+    @frame_number = 1
   end
 
   def score
+    @frames.each { |f| puts "#{f.score}" }
     @frames.inject(0) { |result, elem| result + elem.score }
   end
 
   def roll(pins)
     current_frame.add_to_score(pins)
-    if @spare_add
-      previous_frame.add_to_score(pins)
-      @spare_add = false
+    if previous_frame.spare? && first_roll 
+      previous_frame.add_to_bonus_score(pins)
     end
-    if @strike_add > 0
-      previous_frame.add_to_score(pins)
-      @strike_add -= 1
+    if previous_frame.strike?
+      previous_frame.add_to_bonus_score(pins)
     end
-    current_frame.next_roll
-
+    if two_frames_ago.strike?
+      two_frames_ago.add_to_bonus_score(pins)
+    end
     check_for_end_of_frame
   end
 
 
   private
   def check_for_end_of_frame
-    if current_frame.strike?
-      @strike_add += 2
-      finish_frame
-    elsif current_frame.spare?
-      @spare_add = true
-      finish_frame
-    elsif current_frame.complete?
-      finish_frame
-    end
+    @frame_number += 1  if current_frame.complete?
   end
 
-  def finish_frame
-    @frame_number += 1
+  def first_roll
+    current_frame.roll == 1
   end
 
-  def current_frame 
+  def second_roll
+    current_frame.roll == 2
+  end
+
+  def current_frame
     @frames[@frame_number]
   end
 
-  def previous_frame 
+  def previous_frame
     @frames[@frame_number - 1]
+  end
+
+  def two_frames_ago
+    @frames[@frame_number - 2]
   end
 end
