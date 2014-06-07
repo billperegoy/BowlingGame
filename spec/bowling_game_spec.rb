@@ -1,4 +1,5 @@
 require_relative '../lib/BowlingGame'
+require_relative '../lib/Frame'
 
 describe BowlingGame do
   it "should return 0 for a 10 zero rolls" do

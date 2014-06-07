@@ -1,61 +1,54 @@
 class BowlingGame
-  attr_reader :score
 
   def initialize
-    @score = 0
-    @frame = 1
-    @frame_score = 0
-    @frame_roll = 0
-
+    @frames = (1..10).map { |f|  Frame.new }
+    @frame_number = 0
     @strike_add = 0
     @spare_add = false
   end
 
+  def score
+    @frames.inject(0) { |result, elem| result + elem.score }
+  end
+
   def roll(pins)
-    @score += pins
+    current_frame.add_to_score(pins)
     if @spare_add
-      @score += pins
+      previous_frame.add_to_score(pins)
       @spare_add = false
     end
     if @strike_add > 0
-      @score += pins
+      previous_frame.add_to_score(pins)
       @strike_add -= 1
     end
-    @frame_score += pins
-    @frame_roll += 1 
+    current_frame.next_roll
 
     check_for_end_of_frame
   end
 
 
   private
-  def strike?
-    (@frame_roll == 1) && (@frame_score == 10)
-  end
-
-  def spare?
-    (@frame_roll == 2) && (@frame_score == 10)
-  end
-
-  def frame_complete?
-    @frame_roll == 2
-  end
-
   def check_for_end_of_frame
-    if strike?
+    if current_frame.strike?
       @strike_add += 2
       finish_frame
-    elsif spare?
+    elsif current_frame.spare?
       @spare_add = true
       finish_frame
-    elsif frame_complete?
+    elsif current_frame.complete?
       finish_frame
     end
   end
 
   def finish_frame
-    @frame += 1
-    @frame_score = 0
-    @frame_roll = 0
+    @frame_number += 1
+  end
+
+  def current_frame 
+    @frames[@frame_number]
+  end
+
+  def previous_frame 
+    @frames[@frame_number - 1]
   end
 end
