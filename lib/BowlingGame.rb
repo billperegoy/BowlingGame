@@ -7,7 +7,7 @@ class BowlingGame
 
   def score
     @frames.select { |f| f.scoring_frame? }.
-            inject(0) { |result, elem| result + elem.score }
+            inject(0) { |score, frame| score + frame.score }
   end
 
   def roll(pins)
