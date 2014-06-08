@@ -1,17 +1,17 @@
 class BowlingGame
 
   def initialize
-    @frames = (0..12).map { |f|  Frame.new }
+    @frames = (0..12).map { |num|  Frame.new(num) }
     @frame_number = 1
   end
 
   def score
-    @frames.each { |f| puts "#{f.score}" }
-    @frames.inject(0) { |result, elem| result + elem.score }
+    @frames.select { |f| f.real }.
+            inject(0) { |result, elem| result + elem.score }
   end
 
   def roll(pins)
-    current_frame.add_to_score(pins) unless @frame_number > 10
+    current_frame.add_to_score(pins)
     if previous_frame.spare? && first_roll 
       previous_frame.add_to_bonus_score(pins)
     end

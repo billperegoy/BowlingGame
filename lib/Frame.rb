@@ -1,7 +1,8 @@
 class Frame
-  attr_reader :roll 
+  attr_reader :real, :roll 
 
-  def initialize
+  def initialize(frame_num)
+    @real = (frame_num >= 1) && (frame_num <=10)
     @score = 0
     @bonus_score = 0
     @roll = 0
