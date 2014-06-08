@@ -6,7 +6,7 @@ class BowlingGame
   end
 
   def score
-    @frames.select { |f| f.real }.
+    @frames.select { |f| f.scoring_frame? }.
             inject(0) { |result, elem| result + elem.score }
   end
 

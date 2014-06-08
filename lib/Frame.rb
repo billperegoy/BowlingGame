@@ -8,6 +8,10 @@ class Frame
     @roll = 0
   end
 
+  def scoring_frame?
+    @real
+  end
+
   def score
     @score + @bonus_score
   end
