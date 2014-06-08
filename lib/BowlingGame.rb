@@ -12,20 +12,36 @@ class BowlingGame
 
   def roll(pins)
     current_frame.add_to_score(pins)
-    if previous_frame.spare? && first_roll 
-      previous_frame.add_to_bonus_score(pins)
-    end
-    if previous_frame.strike?
-      previous_frame.add_to_bonus_score(pins)
-    end
-    if previous_frame.strike? && two_frames_ago.strike? && first_roll
-      two_frames_ago.add_to_bonus_score(pins)
-    end
+    add_spare_bonus(pins)
+    add_strike_bonus(pins)
     check_for_end_of_frame
   end
 
 
   private
+  def add_spare_bonus(pins)
+    if previous_frame.spare? && first_roll
+      previous_frame.add_to_bonus_score(pins)
+    end
+  end
+
+  def add_strike_bonus(pins)
+    add_strike_bonus_to_previous_frame(pins)
+    add_strike_bonus_to_two_frames_ago(pins)
+  end
+
+  def add_strike_bonus_to_previous_frame(pins)
+    if previous_frame.strike?
+      previous_frame.add_to_bonus_score(pins)
+    end
+  end
+
+  def add_strike_bonus_to_two_frames_ago(pins)
+    if previous_frame.strike? && two_frames_ago.strike? && first_roll
+      two_frames_ago.add_to_bonus_score(pins)
+    end
+  end
+
   def check_for_end_of_frame
     @frame_number += 1  if current_frame.complete?
   end
