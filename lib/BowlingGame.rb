@@ -16,7 +16,7 @@ class BowlingGame
   end
 
   def roll(pins)
-    current_frame.add_to_score(pins)
+    current_frame.add_roll(pins)
     add_spare_bonus(pins)
     add_strike_bonus(pins)
     check_for_end_of_frame

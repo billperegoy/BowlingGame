@@ -37,7 +37,7 @@ def complete?
 strike? || spare? || no_mark?
 end
 
-def add_to_score(pins)
+def add_roll(pins)
 @score += pins
 @roll += 1
 end
