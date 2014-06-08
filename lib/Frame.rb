@@ -1,3 +1,8 @@
+# Class that implments logic to keep track of a single bowling
+# frame. Note that there is the concept of non-scoring frames.
+# These allow the use of the frame concept for the extra balls
+# rolled after sapares or frames in the final two frames.
+#
 class Frame
 attr_reader :real, :roll
 

@@ -3,8 +3,6 @@ require 'cane/rake_task'
 
 RSpec::Core::RakeTask.new(:spec)
 
-Cane::RakeTask.new(:quality) do |cane|
-  cane.no_doc = true
-end
+Cane::RakeTask.new(:quality)
 
 task :default => [:spec, :quality]

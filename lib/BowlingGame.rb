@@ -1,3 +1,8 @@
+# Top level class for BowloingGame.
+# Implements two main public methids:
+#   - score
+#   - roll(pins)
+##
 class BowlingGame
 
   def initialize
