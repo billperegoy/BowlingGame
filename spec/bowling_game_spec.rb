@@ -13,7 +13,7 @@ describe BowlingGame do
   it "should return 20 for a 20 1 pin rolls" do
     g = BowlingGame.new
     (1..10).each do
-      2.times { g.roll(1) } 
+      2.times { g.roll(1) }
     end
     g.score.should == 10 * 2
   end
@@ -21,7 +21,7 @@ describe BowlingGame do
   it "should properly score a first frame spare" do
     g = BowlingGame.new
     2.times { g.roll(5) }
-    (2..10).each do 
+    (2..10).each do
       2.times { g.roll(1) }
     end
     g.score.should == 11 + 9 * 2
@@ -31,7 +31,7 @@ describe BowlingGame do
     g = BowlingGame.new
     2.times { g.roll(5) }
     2.times { g.roll(5) }
-    (3..10).each do 
+    (3..10).each do
       2.times { g.roll(1) }
     end
     g.score.should == (15 + 11 + 8 * 2)
@@ -70,10 +70,10 @@ describe BowlingGame do
   it "should properly score a perfect game" do
     g = BowlingGame.new
     (1..10).each do
-      g.roll(10) 
+      g.roll(10)
     end
     g.roll(10)
     g.roll(10)
-    g.score.should == 10 * 30 
+    g.score.should == 10 * 30
   end
 end
