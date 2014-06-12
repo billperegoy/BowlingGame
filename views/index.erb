@@ -1,0 +1,19 @@
+<html ng-app>
+  <head>
+    <title>Bowling Game</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.11/angular.min.js"></script>
+    <script src="js/bowling.js"></script>
+  </head>
+  <body>
+    <div ng-controller="BowlingCtrl" id="top_container">
+      <% (1..10).each do |num| %>
+        <div class="frame_box" id="frame_<%= num %>">
+          <div class="mark_box"> </div>
+          <div class="mark_box"> </div>
+          <div class="score_text">{{ score[<%= num %>] }}</div>
+        </div>
+      <% end %>
+    </div>
+  </body>
+</html>
